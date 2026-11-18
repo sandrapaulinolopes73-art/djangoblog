@@ -1,12 +1,18 @@
+# blog\models.py
 
-from django.db import models 
+from django.db import models
 from django.conf import settings
 from django.utils import timezone
 
-# Garante que 'Post' apagados `is_deleted=True` nunca sejam usados.
 class PostManager(models.Manager):
+    # Manager de 'post'
+    # Define algumas das Regras de Negócio
     def get_queryset(self):
-        return super().get_queryset().filter(is_deleted=False)
+        return super().get_queryset().filter(
+            is_deleted=False#,                   # Não mostra post se apagado
+            #user__is_deleted=False,             # Não mostra post se usuário apagado
+            #created_at__lte=timezone.now()      # Não mostra post se do futuro
+        )
 
 # Modela a entidade 'Post'
 class Post(models.Model):
@@ -22,9 +28,10 @@ class Post(models.Model):
     title = models.CharField('Título', max_length=127)
     summary = models.CharField('Resumo', max_length=255)
     created_at = models.DateTimeField('Criado em', default=timezone.now)
-    thumbnail = models.URLField('Miniatura (URL)')
+    thumbnail = models.URLField('URL da imagem', max_length=255, blank=True, null=True)
     textbody = models.TextField('Texto do post')
     views = models.IntegerField('Visualizações', default=0)
+    is_comment = models.BooleanField('Permitir comentarios', default=True)
     is_active = models.BooleanField('Ativo', default=True)
     is_deleted = models.BooleanField('Excluído', default=False)
 
