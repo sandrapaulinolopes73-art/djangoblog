@@ -1,8 +1,15 @@
+# blog\urls.py
+
 from django.urls import path
 from . import views
-#Rota para anotação de views, que é a função home, que retorna uma resposta HTTP com o texto "Olá, Django!".
 
 urlpatterns = [
+    # Rota para página inicial
     path('', views.home, name='home'),
+
+    # Rota para a página de contatos
     path('contacts/', views.contacts, name='contacts'),
+
+    # Página do post completo
+    path('post/<int:id>/', views.post_detail, name='post_detail'),  
 ]
