@@ -1,3 +1,4 @@
 from .home import home
 from .contacts import contacts
 from .post_detail import post_detail    # ← Adicione isso...
+from .login import login_view

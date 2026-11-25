@@ -11,5 +11,9 @@ urlpatterns = [
     path('contacts/', views.contacts, name='contacts'),
 
     # Página do post completo
-    path('post/<int:id>/', views.post_detail, name='post_detail'),  
+    path('post/<int:id>/', views.post_detail, name='post_detail'),
+     
+    # Login do usuário 
+    path('login/', views.login_view, name='login'),    
+
 ]
