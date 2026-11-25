@@ -129,4 +129,5 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+# Usa modo personalizado de usuário
 AUTH_USER_MODEL = 'blog.User'
