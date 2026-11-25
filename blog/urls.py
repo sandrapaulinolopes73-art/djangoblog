@@ -12,8 +12,8 @@ urlpatterns = [
 
     # Página do post completo
     path('post/<int:id>/', views.post_detail, name='post_detail'),
-     
-    # Login do usuário 
-    path('login/', views.login_view, name='login'),    
 
+    # Login do usuário
+    path('login/', views.login_view, name='login'),
+    path('profile/', views.profile, name='profile'),
 ]
